@@ -6,6 +6,10 @@ var resultContentEl = document.querySelector("#result-text")
 
 var forecastContentEl = document.querySelector("#forecast-text")
 
+var historyEl = document.querySelector("#history");
+
+var searchHistory = [];
+
 var handleForm = function(event){
       event.preventDefault();
       $('#search-bar').addClass('align-start align-stretch-md align-content-start align-content-stretch-md').removeClass('align-center justify-center')
@@ -13,6 +17,8 @@ var handleForm = function(event){
       $('div:hidden').show("fast");
       forecastContentEl.innerHTML = ''; //Clears Previous Forecast Results
       searchTerm = cityName.value;
+      searchHistory.push(searchTerm);
+      localStorage.setItem['searchHistory',searchHistory];
       console.log(searchTerm);
       var urlRequest = 'https://api.openweathermap.org/data/2.5/weather?q='+searchTerm+'&APPID=f48c044c914b169326af2c0881fb64da'
       fetch(urlRequest)
@@ -69,5 +75,22 @@ var handleForm = function(event){
           })
       });
 }
+
+function renderSearchHistory() {
+  for (let i = 0; i < 1; i++) {
+    historyEl.innerHTML = historyEl.innerHTML+`  
+      <div class="card bg-light text-dark mb-3 p-3">
+        <div class="card-body">
+          <input id="search-input" type="submit" value="${cityName.value}"class="btn btn-info btn-block"></button>
+        </div>
+      </div>
+    `}
+}
+
+document.querySelector('#clear-history').addEventListener("click",function() {
+  historyEl.innerHTML = "";
+})
+
 searchFormEl.addEventListener("submit", handleForm)
+searchFormEl.addEventListener("submit", renderSearchHistory)
 

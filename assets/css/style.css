@@ -19,3 +19,12 @@ h6 {
 .startHidden {
   display: none;
 }
+
+#search-bar2 .btn-custom {
+  margin: 5px 5px 0 0;
+  background-color: red;
+}
+
+#history {
+  margin: 5px 5px 0 0;
+}
