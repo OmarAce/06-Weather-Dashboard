@@ -4,8 +4,14 @@ var cityName = document.querySelector("#search-input")
 
 var resultContentEl = document.querySelector("#result-text")
 
+var forecastContentEl = document.querySelector("#forecast-text")
+
 var handleForm = function(event){
       event.preventDefault();
+      $('#search-bar').addClass('align-start align-stretch-md align-content-start align-content-stretch-md').removeClass('align-center justify-center')
+      $('#search-bar2').addClass('col-md-3 p-3').removeClass('col-md-9 flex-column align-center p-5')
+      $('div:hidden').show("fast");
+      forecastContentEl.innerHTML = ''; //Clears Previous Forecast Results
       searchTerm = cityName.value;
       console.log(searchTerm);
       var urlRequest = 'https://api.openweathermap.org/data/2.5/weather?q='+searchTerm+'&APPID=f48c044c914b169326af2c0881fb64da'
@@ -29,19 +35,38 @@ var handleForm = function(event){
             const currentDate = data.current.dt*1000
             const dateObject = new Date(currentDate);
             const humanDate = dateObject.toLocaleString()
-              for (let i = 0; i < 1; i++) {
-                resultContentEl.innerHTML = resultContentEl.innerHTML+`
+              
+            for (let i = 0; i < 1; i++) {
+                resultContentEl.innerHTML = `
                 <div class="card bg-light text-dark mb-3 p-3">
                   <div class="card-body">
                     <h3>${ cityName.value +' '+humanDate } </h3>
-                      <p><strong>Temperature:</strong>${data.current.temp} °F <br>
-                      <strong>Wind:</strong>${data.current.wind_speed} mph <br>
-                      <strong>Humidity:</strong>${data.current.humidity} <br>
-                      <strong>UV Index:</strong>${data.current.uvi}</p>
+                      <p><strong>Temperature:</strong> ${data.current.temp} °F <br>
+                      <strong>Wind:</strong> ${data.current.wind_speed} mph <br>
+                      <strong>Humidity:</strong> ${data.current.humidity} <br>
+                      <strong>UV Index:</strong> ${data.current.uvi} <br>
+                      <strong>Weather Conditions:</strong> ${data.current.weather[0].main}</p>
                   </div>
                 </div>
               `}
-            })
+            
+            for (let i = 0; i < 5; i++) {
+              forecastContentEl.innerHTML = forecastContentEl.innerHTML+`  
+              <div class="col-2 bg-light text-dark">
+                  <div class="card-body">
+                    <h3>${ ' Day '+ (i+1) } </h3>
+                      <p><strong>Temperature:</strong><br> 
+                        Morning: ${data.daily[i].temp.morn} °F <br>
+                        Day: ${data.daily[i].temp.day} °F <br>
+                        Night: ${data.daily[i].temp.night} °F <br>
+                      <strong>Wind:</strong> ${data.daily[i].wind_speed} mph <br>
+                      <strong>Humidity:</strong> ${data.daily[i].humidity} <br>
+                      <strong>UV Index:</strong> ${data.daily[i].uvi} <br>
+                      <strong>Weather Conditions:</strong> ${data.daily[i].weather[0].main}</p>
+                  </div>
+                </div>
+              `}
+          })
       });
 }
 searchFormEl.addEventListener("submit", handleForm)

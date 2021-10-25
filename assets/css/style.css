@@ -15,3 +15,7 @@ h6 {
 .h3color {
   color: #555555;
 }
+
+.startHidden {
+  display: none;
+}
