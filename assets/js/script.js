@@ -19,7 +19,7 @@ var handleForm = function(event){
       searchTerm = cityName.value;
       searchHistory.push(searchTerm);
       console.log(searchHistory);
-      localStorage.setItem['searchHistory', JSON.stringify(searchHistory)];
+      localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
       console.log(searchTerm);
       var urlRequest = 'https://api.openweathermap.org/data/2.5/weather?q='+searchTerm+'&APPID=f48c044c914b169326af2c0881fb64da'
       fetch(urlRequest)
@@ -42,7 +42,8 @@ var handleForm = function(event){
             const currentDate = data.current.dt*1000
             const dateObject = new Date(currentDate);
             const humanDate = dateObject.toLocaleString()
-              
+            
+            //Renders Current City
             for (let i = 0; i < 1; i++) {
                 resultContentEl.innerHTML = `
                 <div class="card bg-light text-dark mb-3 p-3">
@@ -57,6 +58,7 @@ var handleForm = function(event){
                 </div>
               `}
             
+            //Renders the 5 Day Forecast
             for (let i = 0; i < 5; i++) {
               forecastContentEl.innerHTML = forecastContentEl.innerHTML+`  
               <div class="col-2 bg-light text-dark">
@@ -95,7 +97,15 @@ document.querySelector('#clear-history').addEventListener("click",function() {
   historyEl.innerHTML = "";
 })
 
+function getStorage() {
+  var myStorage = JSON.parse(localStorage.getItem('searchHistory'));
+  console.log(myStorage);
+    for (var i=0; i < myStorage.length; i++)
+    searchHistory.push(myStorage[i]);
+  console.log(searchHistory)
+}
 
+getStorage();
 
 searchFormEl.addEventListener("submit", handleForm)
 searchFormEl.addEventListener("submit", renderSearchHistory)
