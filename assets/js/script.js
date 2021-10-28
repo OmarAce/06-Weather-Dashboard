@@ -61,7 +61,7 @@ var handleForm = function(event){
             //Renders the 5 Day Forecast
             for (let i = 0; i < 5; i++) {
               forecastContentEl.innerHTML = forecastContentEl.innerHTML+`  
-              <div class="col-2 bg-light text-dark">
+              <div class="col-2 bg-light text-dark mx-auto">
                   <div class="card-body">
                     <h3>${ ' Day '+ (i+1) } </h3>
                       <p><strong>Temperature:</strong><br> 
