@@ -1,13 +1,9 @@
 var searchFormEl= document.querySelector("#search-form")
-
 var cityName = document.querySelector("#search-input")
-
 var resultContentEl = document.querySelector("#result-text")
-
 var forecastContentEl = document.querySelector("#forecast-text")
-
 var historyEl = document.querySelector("#history");
-
+var now = dayjs().format("dddd, MMMM D, YYYY [at] hh:mm:ss A");
 var searchHistory = [];
 
 var handleForm = function(event){
@@ -39,21 +35,19 @@ var handleForm = function(event){
             })
             .then(function (data) {
             console.log(data);
-            const currentDate = data.current.dt*1000
-            const dateObject = new Date(currentDate);
-            const humanDate = dateObject.toLocaleString()
-            
+
             //Renders Current City
             for (let i = 0; i < 1; i++) {
                 resultContentEl.innerHTML = `
                 <div class="card bg-light text-dark mb-3 p-3">
                   <div class="card-body">
-                    <h3>${ cityName.value +' '+humanDate } </h3>
+                    <h3>${ cityName.value } </h3>
+                      <h5>${now}</h2>
                       <p><strong>Temperature:</strong> ${data.current.temp} °F <br>
                       <strong>Wind:</strong> ${data.current.wind_speed} mph <br>
                       <strong>Humidity:</strong> ${data.current.humidity} <br>
                       <strong>UV Index:</strong> ${data.current.uvi} <br>
-                      <strong>Weather Conditions:</strong> ${data.current.weather[0].main}</p>
+                      <img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="${data.current.weather[0].description}">
                   </div>
                 </div>
               `}
@@ -63,7 +57,7 @@ var handleForm = function(event){
               forecastContentEl.innerHTML = forecastContentEl.innerHTML+`  
               <div class="col-2 bg-light text-dark mx-auto">
                   <div class="card-body">
-                    <h3>${ ' Day '+ (i+1) } </h3>
+                    <h3>${ dayjs().add( i-1, 'day').format('MMM MM-DD') } </h3>
                       <p><strong>Temperature:</strong><br> 
                         Morning: ${data.daily[i].temp.morn} °F <br>
                         Day: ${data.daily[i].temp.day} °F <br>
@@ -71,7 +65,7 @@ var handleForm = function(event){
                       <strong>Wind:</strong> ${data.daily[i].wind_speed} mph <br>
                       <strong>Humidity:</strong> ${data.daily[i].humidity} <br>
                       <strong>UV Index:</strong> ${data.daily[i].uvi} <br>
-                      <strong>Weather Conditions:</strong> ${data.daily[i].weather[0].main}</p>
+                      <img src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png" alt="${data.daily[i].weather[0].description}">
                   </div>
                 </div>
               `}
