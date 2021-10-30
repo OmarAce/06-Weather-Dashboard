@@ -11,8 +11,12 @@ var handleForm = function(event){
       $('#search-bar').addClass('align-start align-stretch-md align-content-start align-content-stretch-md').removeClass('align-center justify-center')
       $('#search-bar2').addClass('col-md-3 p-3').removeClass('col-md-9 flex-column align-center p-5')
       $('div:hidden').show("fast");
-      forecastContentEl.innerHTML = ''; //Clears Previous Forecast Results
       searchTerm = cityName.value;
+      findSearchTerm(searchTerm);
+}
+
+function findSearchTerm(searchTerm){
+      forecastContentEl.innerHTML = ''; //Clears Previous Forecast Results
       searchHistory.push(searchTerm);
       console.log(searchHistory);
       localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
@@ -41,7 +45,7 @@ var handleForm = function(event){
                 resultContentEl.innerHTML = `
                 <div class="card bg-light text-dark mb-3 p-3">
                   <div class="card-body">
-                    <h3>${ cityName.value } </h3>
+                    <h3>${ searchTerm } </h3>
                       <h5>${now}</h2>
                       <p><strong>Temperature:</strong> ${data.current.temp} °F <br>
                       <strong>Wind:</strong> ${data.current.wind_speed} mph <br>
@@ -85,7 +89,7 @@ function renderSearchHistory() {
     `
   }
   $(document).ready(function() {
-    $('.btn-history').on('click', logThis)
+    $('.btn-history').on('click', searchHistRender)
   })
 }
 
@@ -106,17 +110,22 @@ function getStorage() {
 
 function initialize() {
   if (searchHistory.length > 0) {
+    $('#search-bar').addClass('align-start align-stretch-md align-content-start align-content-stretch-md').removeClass('align-center justify-center')
+    $('#search-bar2').addClass('col-md-3 p-3').removeClass('col-md-9 flex-column align-center p-5')
+    $('div:hidden').show("fast");
     var searchTerm = searchHistory[searchHistory.length - 1];
     console.log(searchTerm);
+    findSearchTerm(searchTerm);
+    renderSearchHistory();
   }
 }
 
 getStorage();
 
-function logThis(event) {
+function searchHistRender(event) {
   event.preventDefault();
   searchTerm = $(this).attr('data-id');
-  console.log(searchTerm);
+  findSearchTerm(searchTerm);
 }
 
 searchFormEl.addEventListener("submit", handleForm)
