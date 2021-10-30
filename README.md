@@ -2,7 +2,7 @@
 
 ## Description
 
-A weather search that shows the current wearther and a 5-day forecast
+A browser application that shows the current wearther and a 5-day forecast
 
 ## Assignment
 
@@ -13,7 +13,7 @@ Items searched are saved to page and are stored to the local storage and reiniti
 
 ## Image
 
-![image of coding quiz ](IMAGE)
+![image of Weather Dashboard ](IMAGE)
 
 ## Destination
 
