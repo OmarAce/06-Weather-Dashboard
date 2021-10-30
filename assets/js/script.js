@@ -61,10 +61,10 @@ function findSearchTerm(searchTerm){
             //Renders the 5 Day Forecast
             for (let i = 0; i < 5; i++) {
               forecastContentEl.innerHTML = forecastContentEl.innerHTML+`  
-              <div class="col-2 bg-light text-dark mx-auto">
-                  <div class="card-body">
-                    <h3>${ dayjs().add( i-1, 'day').format('MMM MM-DD') } </h3>
-                      <p><strong>Temperature:</strong><br> 
+              <div class="col-lg-2 col-md-12 bg-light text-dark mx-auto overflow-hidden m-3">
+                  <div class="card-body text-center">
+                    <h3>${ dayjs().add( i-1, 'day').format('MMM') } </h3> <h4 class="text-muted">${ dayjs().add( i-1, 'day').format('MM/DD') } </h4>
+                      <p><strong>Temps:</strong><br> 
                         Morning: ${data.daily[i].temp.morn} °F <br>
                         Day: ${data.daily[i].temp.day} °F <br>
                         Night: ${data.daily[i].temp.night} °F <br>
