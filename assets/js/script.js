@@ -79,10 +79,14 @@ function renderSearchHistory() {
     historyEl.innerHTML = historyEl.innerHTML+`  
       <div class="card bg-light text-dark mb-3 p-3">
         <div class="card-body">
-          <input id="search-input" type="submit" value="${searchHistory[i]}"class="btn btn-info btn-block"></button>
+          <button name="searchHist" id="search-history" data-id="${searchHistory[i]}"class="btn btn-history btn-info btn-block">${searchHistory[i]}</button>
         </div>
       </div>
-    `}
+    `
+  }
+  $(document).ready(function() {
+    $('.btn-history').on('click', logThis)
+  })
 }
 
 document.querySelector('#clear-history').addEventListener("click",function() {
@@ -97,10 +101,23 @@ function getStorage() {
     for (var i=0; i < myStorage.length; i++)
     searchHistory.push(myStorage[i]);
   console.log(searchHistory)
+  initialize();
+}
+
+function initialize() {
+  if (searchHistory.length > 0) {
+    var searchTerm = searchHistory[searchHistory.length - 1];
+    console.log(searchTerm);
+  }
 }
 
 getStorage();
 
+function logThis(event) {
+  event.preventDefault();
+  searchTerm = $(this).attr('data-id');
+  console.log(searchTerm);
+}
+
 searchFormEl.addEventListener("submit", handleForm)
 searchFormEl.addEventListener("submit", renderSearchHistory)
-
