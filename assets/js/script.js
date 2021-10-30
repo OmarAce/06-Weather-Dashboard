@@ -105,13 +105,14 @@ document.querySelector('#clear-history').addEventListener("click",function() {
 
 //Gets the localStorage
 function getStorage() {
-  var myStorage = [];
   var myStorage = JSON.parse(localStorage.getItem('searchHistory'));
   console.log(myStorage);
+  if (myStorage) {
     for (var i=0; i < myStorage.length; i++)
     searchHistory.push(myStorage[i]);
   console.log(searchHistory)
   initialize();
+  }
 }
 
 //Initializes Page
