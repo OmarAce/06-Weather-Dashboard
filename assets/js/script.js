@@ -6,6 +6,7 @@ var historyEl = document.querySelector("#history");
 var now = dayjs().format("dddd, MMMM D, YYYY [at] hh:mm:ss A");
 var searchHistory = [];
 
+//Reads Value from Form and creats SearchTerm
 var handleForm = function(event){
       event.preventDefault();
       $('#search-bar').addClass('align-start align-stretch-md align-content-start align-content-stretch-md').removeClass('align-center justify-center')
@@ -15,6 +16,7 @@ var handleForm = function(event){
       findSearchTerm(searchTerm);
 }
 
+//Looks for SearchTerm and convert to Lat & Lon to pass thru OpenWeather API One Call
 function findSearchTerm(searchTerm){
       forecastContentEl.innerHTML = ''; //Clears Previous Forecast Results
       searchHistory.push(searchTerm);
@@ -77,6 +79,7 @@ function findSearchTerm(searchTerm){
       });
 }
 
+//Displays Search History on Page
 function renderSearchHistory() {
   historyEl.innerHTML = ""
   for (let i = 0; i < searchHistory.length; i++) {
@@ -93,12 +96,14 @@ function renderSearchHistory() {
   })
 }
 
+//Clears the History Displayed and the localStroage of the Search History
 document.querySelector('#clear-history').addEventListener("click",function() {
   searchHistory = [];
   localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
   historyEl.innerHTML = "";
 })
 
+//Gets the localStorage
 function getStorage() {
   var myStorage = JSON.parse(localStorage.getItem('searchHistory'));
   console.log(myStorage);
@@ -108,6 +113,7 @@ function getStorage() {
   initialize();
 }
 
+//Initializes Page
 function initialize() {
   if (searchHistory.length > 0) {
     $('#search-bar').addClass('align-start align-stretch-md align-content-start align-content-stretch-md').removeClass('align-center justify-center')
@@ -120,13 +126,16 @@ function initialize() {
   }
 }
 
+//Retrieves Storage on Page Load
 getStorage();
 
+//Renders Search Histories
 function searchHistRender(event) {
   event.preventDefault();
   searchTerm = $(this).attr('data-id');
   findSearchTerm(searchTerm);
 }
 
+//Event Listeners
 searchFormEl.addEventListener("submit", handleForm)
 searchFormEl.addEventListener("submit", renderSearchHistory)
