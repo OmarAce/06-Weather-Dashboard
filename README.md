@@ -13,7 +13,7 @@ Items searched are saved to page and are stored to the local storage and reiniti
 
 ## Image
 
-![image of Weather Dashboard ](IMAGE)
+![image of Weather Dashboard ](assets/weather-dash.png)
 
 ## Destination
 

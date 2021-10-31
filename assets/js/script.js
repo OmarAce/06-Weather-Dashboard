@@ -45,7 +45,7 @@ function findSearchTerm(searchTerm){
             //Renders Current City
             for (let i = 0; i < 1; i++) {
                 resultContentEl.innerHTML = `
-                <div class="card bg-light text-dark mb-3 p-3">
+                <div class="card current mb-3 p-3">
                   <div class="card-body">
                     <h3>${ searchTerm } </h3>
                       <h5>${now}</h2>
@@ -53,7 +53,7 @@ function findSearchTerm(searchTerm){
                       <strong>Wind:</strong> ${data.current.wind_speed} mph <br>
                       <strong>Humidity:</strong> ${data.current.humidity} <br>
                       <strong>UV Index:</strong> ${data.current.uvi} <br>
-                      <img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="${data.current.weather[0].description}">
+                      <img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="${data.current.weather[0].description}" class="img-container border border-dark rounded-circle">
                   </div>
                 </div>
               `}
@@ -61,7 +61,7 @@ function findSearchTerm(searchTerm){
             //Renders the 5 Day Forecast
             for (let i = 0; i < 5; i++) {
               forecastContentEl.innerHTML = forecastContentEl.innerHTML+`  
-              <div class="col-lg-2 col-md-12 bg-light text-dark mx-auto overflow-hidden m-3">
+              <div class="col-lg-2 col-md-12 card-background border border-dark mx-auto overflow-hidden m-3 p-3">
                   <div class="card-body text-center">
                     <h3>${ dayjs().add( i-1, 'day').format('MMM') } </h3> <h4 class="text-muted">${ dayjs().add( i-1, 'day').format('MM/DD') } </h4>
                       <p><strong>Temps:</strong><br> 
@@ -71,7 +71,7 @@ function findSearchTerm(searchTerm){
                       <strong>Wind:</strong> ${data.daily[i].wind_speed} mph <br>
                       <strong>Humidity:</strong> ${data.daily[i].humidity} <br>
                       <strong>UV Index:</strong> ${data.daily[i].uvi} <br>
-                      <img src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png" alt="${data.daily[i].weather[0].description}">
+                      <img src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png" alt="${data.daily[i].weather[0].description}" class="img-container border border-dark rounded-circle">
                   </div>
                 </div>
               `}
@@ -84,9 +84,9 @@ function renderSearchHistory() {
   historyEl.innerHTML = ""
   for (let i = 0; i < searchHistory.length; i++) {
     historyEl.innerHTML = historyEl.innerHTML+`  
-      <div class="card bg-light text-dark mb-3 p-3">
+      <div>
         <div class="card-body">
-          <button name="searchHist" id="search-history" data-id="${searchHistory[i]}"class="btn btn-history btn-info btn-block">${searchHistory[i]}</button>
+          <button name="searchHist" id="search-history" data-id="${searchHistory[i]}"class="btn btn-custom2 btn-block">${searchHistory[i]}</button>
         </div>
       </div>
     `

@@ -1,3 +1,18 @@
+* {
+  color: var(--text-color);
+}
+
+:root {
+  --text-color: #2E3440;
+  --text-color2: #4C566A;
+  --background-color: #D8DEE9;
+  --background-current: #81A1C1;
+  --card-backround-color: #ECEFF4;
+  --icon-background-color: white;
+  --button-color: #5E81AC;
+  --clear-button: #BF616A;
+}
+
 body {
   font-family: 'Fira Sans', sans-serif;
 }
@@ -13,7 +28,7 @@ h6 {
 }
 
 .h3color {
-  color: #555555;
+  color: var(--text-color2)
 }
 
 .startHidden {
@@ -22,9 +37,43 @@ h6 {
 
 #search-bar2 .btn-custom {
   margin: 5px 5px 0 0;
-  background-color: red;
+  background-color: #BF616A;
+  color: #ffffff
+}
+
+.text2 {
+  color: var(--text-color2);
 }
 
 #history {
   margin: 5px 5px 0 0;
+}
+
+.btn-custom2 {
+  background-color: var(--button-color);
+  color: #ffffff
+}
+
+.background {
+  background-color: var(--background-color);
+}
+
+.card-background {
+  background-color: var(--card-backround-color)
+}
+
+#search-history .btn-history {
+  background-color: var(--button-color);
+}
+
+.current {
+  background-color: var(--background-current);
+}
+
+.button-container {
+  background-color: var(--icon-background-color);
+}
+
+.img-container {
+  background-color: var(--icon-background-color);
 }

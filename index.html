@@ -13,16 +13,16 @@
 </head>
 
 <body>
-  <div id="search-bar" class="flex-row align-center justify-center min-100-vh bg-primary">
-    <div id="search-bar2" class="col-12 col-md-9 flex-column align-center bg-light p-5">
+  <div id="search-bar" class="flex-row align-center justify-center min-100-vh background">
+    <div id="search-bar2" class="col-12 col-md-9 flex-column align-center card-background p-5">
       <h1 class="text-primary text-center">Weather Dashboard</h1>
       <form id="search-form" class="form w-100">
         <h3 class="lead text-center h3color">Type in a city name to get the current weather and 5-day forecast!</h3>  
         <input id="search-input" class="form-input w-100" type="text" placeholder="Name of City...">
-        <button class="btn btn-info btn-block">Click Me</button>
+        <button class="btn btn-block btn-custom2">Click Me</button>
       </form>
       <div class="startHidden">
-        <button class="btn btn-info btn-block btn-custom" id="clear-history">Clear history</button>
+        <button class="btn btn-block btn-custom" id="clear-history">Clear history</button>
         <h3 class="lead text-center h3color">Search History:</h3>
       <form id="history"></form>
     </div>
@@ -32,7 +32,7 @@
       <h2 class="text-center">Showing results for <span id="result-text"></span></h2>
 
       <h3 class="text-center overflow-hidden">5-Day Forecast</h3>
-      <div class="container-fluid row col-12" id="forecast-text">
+      <div class="container-fluid row col-12 mx-auto" id="forecast-text">
       </div>
 
     </div>
