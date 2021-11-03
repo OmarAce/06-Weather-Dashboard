@@ -6,6 +6,7 @@
   --text-color: #2E3440;
   --text-color2: #4C566A;
   --background-color: #D8DEE9;
+  --muted-current-color: #434C5E;
   --background-current: #81A1C1;
   --card-backround-color: #ECEFF4;
   --icon-background-color: white;
@@ -76,4 +77,8 @@ h6 {
 
 .img-container {
   background-color: var(--icon-background-color);
+}
+
+.current-muted {
+  color: var(--muted-current-color)
 }

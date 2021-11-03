@@ -47,10 +47,14 @@ function findSearchTerm(searchTerm){
                 resultContentEl.innerHTML = `
                 <div class="card current mb-3 p-3">
                   <div class="card-body">
-                    <h3>${ searchTerm } </h3>
-                      <h5>${now}</h2>
-                      <p><strong>Temperature:</strong> ${data.current.temp} °F <br>
-                      <strong>Wind:</strong> ${data.current.wind_speed} mph <br>
+                    <h1 class= "border-light border-2 border rounded-pill ml-5 mr-5">${ searchTerm } </h3>
+                      <h5 class="current-muted">${now}</h2>
+                      <p><strong>Temperature:</strong> <br>
+                      Current: ${data.current.temp.toFixed(1)} °F <br>
+                      Morning: ${data.daily[0].temp.day.toFixed(1)} °F <br>
+                      Day: ${data.daily[0].temp.day.toFixed(1)} °F <br>
+                      Night: ${data.daily[0].temp.night.toFixed(1)} °F <br>
+                      <strong>Wind:</strong> ${data.current.wind_speed.toFixed(1)} mph <br>
                       <strong>Humidity:</strong> ${data.current.humidity} <br>
                       <strong>UV Index:</strong> ${data.current.uvi} <br>
                       <img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="${data.current.weather[0].description}" class="img-container border border-dark rounded-circle">
@@ -65,10 +69,10 @@ function findSearchTerm(searchTerm){
                   <div class="card-body text-center">
                     <h3>${ dayjs().add( i+1, 'day').format('MMM') } </h3> <h4 class="text-muted">${ dayjs().add( i+1, 'day').format('MM/DD') } </h4>
                       <p><strong>Temps:</strong><br> 
-                        Morning: ${data.daily[i].temp.morn} °F <br>
-                        Day: ${data.daily[i].temp.day} °F <br>
-                        Night: ${data.daily[i].temp.night} °F <br>
-                      <strong>Wind:</strong> ${data.daily[i].wind_speed} mph <br>
+                        Morning: ${data.daily[i].temp.morn.toFixed(1)} °F <br>
+                        Day: ${data.daily[i].temp.day.toFixed(1)} °F <br>
+                        Night: ${data.daily[i].temp.night.toFixed(1)} °F <br>
+                      <strong>Wind:</strong> ${data.daily[i].wind_speed.toFixed(1)} mph <br>
                       <strong>Humidity:</strong> ${data.daily[i].humidity} <br>
                       <strong>UV Index:</strong> ${data.daily[i].uvi} <br>
                       <img src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png" alt="${data.daily[i].weather[0].description}" class="img-container border border-dark rounded-circle">
