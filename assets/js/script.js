@@ -63,7 +63,7 @@ function findSearchTerm(searchTerm){
               forecastContentEl.innerHTML = forecastContentEl.innerHTML+`  
               <div class="col-lg-2 col-md-12 card-background border border-dark mx-auto overflow-hidden m-3 p-3">
                   <div class="card-body text-center">
-                    <h3>${ dayjs().add( i-1, 'day').format('MMM') } </h3> <h4 class="text-muted">${ dayjs().add( i-1, 'day').format('MM/DD') } </h4>
+                    <h3>${ dayjs().add( i+1, 'day').format('MMM') } </h3> <h4 class="text-muted">${ dayjs().add( i+1, 'day').format('MM/DD') } </h4>
                       <p><strong>Temps:</strong><br> 
                         Morning: ${data.daily[i].temp.morn} °F <br>
                         Day: ${data.daily[i].temp.day} °F <br>
