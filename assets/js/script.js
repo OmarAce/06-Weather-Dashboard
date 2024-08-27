@@ -46,7 +46,7 @@ function findSearchTerm(searchTerm) {
         lat +
         "&lon=" +
         lon +
-        "&appid=f48c044c914b169326af2c0881fb64da";
+        "&units=imperial&appid=f48c044c914b169326af2c0881fb64da";
 
       fetch(urlOneCall)
         .then(function (response) {
